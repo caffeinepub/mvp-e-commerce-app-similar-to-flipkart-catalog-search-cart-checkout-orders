@@ -31,6 +31,7 @@ export function useAddProduct() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['products'] });
+      queryClient.invalidateQueries({ queryKey: ['categories'] });
       toast.success('Product added successfully');
     },
     onError: (error: Error) => {
@@ -71,6 +72,7 @@ export function useUpdateProduct() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['products'] });
       queryClient.invalidateQueries({ queryKey: ['product'] });
+      queryClient.invalidateQueries({ queryKey: ['categories'] });
       toast.success('Product updated successfully');
     },
     onError: (error: Error) => {

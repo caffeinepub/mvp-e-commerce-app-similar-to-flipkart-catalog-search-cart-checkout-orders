@@ -2,11 +2,11 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-add-static-seo-discoverability-files-for-buyflow-so-search-engines-can-crawl-the-site-when-it-is-hosted-at-a-public-url-e-g-icp-domain-or-custom-domain-include-a-robots-txt-that-allows-crawling-and-a-sitemap-xml-that-lists-the-main-routes-products",
-      "featureTitle": "Add static SEO/discoverability files for Buyflow so search engines can crawl the site when it is hosted at a public URL (e.g., ICP domain or custom domain): include a robots.txt that allows crawling, and a sitemap.xml that lists the main routes (/, /products).",
+      "featureId": "feature-ensure-the-admin-route-renders-a-full-admin-panel-product-management-experience-not-a-placeholder-view-that-only-shows-the-signed-in-principal-id-including-1-an-add-edit-product-form-and-2-a-manage-products-list-for-editing-and-stock-updates-access-must-remain-restricted-via-the-existing-admingate-so-non-admin-users-see-an-access-denied-screen",
+      "featureTitle": "Ensure the \"/admin\" route renders a full Admin Panel product-management experience (not a placeholder view that only shows the signed-in principal ID), including: (1) an Add/Edit Product form and (2) a Manage Products list for editing and stock updates; access must remain restricted via the existing AdminGate so non-admin users see an \"Access Denied\" screen.",
       "files": [
-        "frontend/public/robots.txt",
-        "frontend/public/sitemap.xml"
+        "frontend/src/components/admin/AdminGate.tsx",
+        "frontend/src/pages/admin/AdminProductsPage.tsx"
       ],
       "components": [
         "authorization@4.0.0",
@@ -17,15 +17,18 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-17"
+        "REQ-28"
       ],
       "confidence": "high"
     },
     {
-      "featureId": "feature-improve-html-metadata-for-sharing-and-indexing-by-adding-standard-meta-tags-to-the-html-entry-point-meta-description-canonical-url-support-and-open-graph-basic-tags-title-description-url-using-the-buyflow-brand-name-and-english-text",
-      "featureTitle": "Improve HTML metadata for sharing and indexing by adding standard meta tags to the HTML entry point: meta description, canonical URL support, and Open Graph basic tags (title, description, url) using the Buyflow brand name and English text.",
+      "featureId": "feature-upgrade-the-admin-panel-add-edit-product-form-to-support-a-full-workflow-for-product-fields-already-supported-by-the-backend-title-description-price-currency-category-imageurl-rating-optional-and-stock-add-admin-friendly-ux-features-inline-validation-with-clear-english-error-messages-an-image-preview-for-the-entered-imageurl-and-category-assistance-suggest-existing-categories-from-the-catalog-while-still-allowing-free-text-entry",
+      "featureTitle": "Upgrade the Admin Panel Add/Edit Product form to support a \"full\" workflow for product fields already supported by the backend: title, description, price, currency, category, imageUrl, rating (optional), and stock. Add admin-friendly UX features: inline validation with clear English error messages, an image preview for the entered imageUrl, and category assistance (suggest existing categories from the catalog while still allowing free-text entry).",
       "files": [
-        "frontend/index.html"
+        "frontend/src/components/admin/ProductUpsertForm.tsx",
+        "frontend/src/hooks/queries/useAdminProducts.ts",
+        "frontend/src/pages/admin/AdminProductsPage.tsx",
+        "frontend/src/utils/adminProductValidation.ts"
       ],
       "components": [
         "authorization@4.0.0",
@@ -36,18 +39,16 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-18"
+        "REQ-29"
       ],
       "confidence": "high"
     },
     {
-      "featureId": "feature-add-a-simple-user-facing-page-or-section-in-the-ui-that-shows-the-app-s-current-public-url-origin-and-provides-a-one-click-copy-url-action-so-users-can-open-buyflow-directly-in-any-browser-chrome-safari-firefox-without-needing-someone-to-send-them-a-link-manually",
-      "featureTitle": "Add a simple user-facing page or section in the UI that shows the app’s current public URL (origin) and provides a one-click “Copy URL” action so users can open Buyflow directly in any browser (Chrome/Safari/Firefox) without needing someone to send them a link manually.",
+      "featureId": "feature-upgrade-the-admin-panel-manage-products-view-to-better-support-ongoing-catalog-management-by-adding-loading-empty-states-an-at-a-glance-product-thumbnail-from-imageurl-and-safer-stock-editing-ux-validate-numeric-input-avoid-sending-invalid-empty-values-keep-all-user-facing-text-in-english",
+      "featureTitle": "Upgrade the Admin Panel \"Manage Products\" view to better support ongoing catalog management by adding: loading/empty states, an at-a-glance product thumbnail (from imageUrl), and safer stock editing UX (validate numeric input; avoid sending invalid/empty values). Keep all user-facing text in English.",
       "files": [
-        "frontend/src/App.tsx",
-        "frontend/src/components/Layout/AppLayout.tsx",
-        "frontend/src/pages/HelpPage.tsx",
-        "frontend/src/utils/publicUrl.ts"
+        "frontend/src/components/admin/ManageProductsTable.tsx",
+        "frontend/src/pages/admin/AdminProductsPage.tsx"
       ],
       "components": [
         "authorization@4.0.0",
@@ -58,26 +59,7 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-19"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-add-an-in-app-help-section-english-that-explains-what-is-required-to-make-buyflow-discoverable-on-google-search-e-g-submit-the-public-url-in-google-search-console-and-clarify-that-a-custom-domain-dns-setup-is-outside-the-app-code-but-the-app-provides-the-needed-seo-files-and-metadata",
-      "featureTitle": "Add an in-app help section (English) that explains what is required to make Buyflow discoverable on Google Search (e.g., submit the public URL in Google Search Console) and clarify that a custom domain/DNS setup is outside the app code but the app provides the needed SEO files and metadata.",
-      "files": [
-        "frontend/src/pages/HelpPage.tsx"
-      ],
-      "components": [
-        "authorization@4.0.0",
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-20"
+        "REQ-30"
       ],
       "confidence": "high"
     }

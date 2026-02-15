@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Copy, Check, ExternalLink, Globe, Search } from 'lucide-react';
+import { Copy, Check, ExternalLink, Globe, Search, ShieldCheck, User } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Alert, AlertDescription } from '@/components/ui/alert';
@@ -71,6 +71,113 @@ export default function HelpPage() {
                 Anyone with this URL can open your Buyflow marketplace in any browser (Chrome, Safari, Firefox, etc.)
               </AlertDescription>
             </Alert>
+          </CardContent>
+        </Card>
+
+        <Separator />
+
+        {/* Principal ID Section */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <User className="h-5 w-5" />
+              How to Find Your Principal ID
+            </CardTitle>
+            <CardDescription>
+              Your unique Internet Identity identifier for admin access
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="space-y-3">
+              <p className="text-sm">
+                Your Principal ID is a unique identifier assigned to your Internet Identity account. You need this ID to be granted admin access to the Buyflow marketplace.
+              </p>
+              
+              <div className="space-y-2">
+                <p className="text-sm font-semibold">To find and copy your Principal ID:</p>
+                <ol className="list-decimal list-inside space-y-2 text-sm ml-2">
+                  <li>
+                    <strong>Sign in:</strong> Click the "Login" button in the header and authenticate with Internet Identity
+                  </li>
+                  <li>
+                    <strong>Open Principal ID:</strong> After signing in, click the user icon (
+                    <User className="h-3 w-3 inline mx-1" />) in the header next to the logout button
+                  </li>
+                  <li>
+                    <strong>Copy your ID:</strong> Click the "Copy Principal ID" button to copy your full principal string to the clipboard
+                  </li>
+                  <li>
+                    <strong>Share with admin:</strong> Send this Principal ID to the person who manages admin access for your marketplace
+                  </li>
+                </ol>
+              </div>
+
+              <Alert variant="destructive">
+                <AlertDescription>
+                  <strong>Important:</strong> An email address is <strong>not</strong> a Principal ID. A Principal ID is a long string that looks like this example: <code className="bg-muted px-1 py-0.5 rounded text-xs">aaaaa-aa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-aaaaa-aaa</code>
+                </AlertDescription>
+              </Alert>
+
+              <Alert>
+                <AlertDescription>
+                  Your Principal ID is unique to your Internet Identity and is used by the system to verify your admin permissions. Keep it safe and only share it with trusted administrators.
+                </AlertDescription>
+              </Alert>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Separator />
+
+        {/* How to Add Products Section */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <ShieldCheck className="h-5 w-5" />
+              How to Add Products
+            </CardTitle>
+            <CardDescription>
+              Managing your product catalog through the Admin Panel
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="space-y-3">
+              <p className="text-sm">
+                To add or manage products in your Buyflow marketplace, you need to use the Admin Panel. Here's how:
+              </p>
+              
+              <ol className="list-decimal list-inside space-y-2 text-sm ml-2">
+                <li>
+                  <strong>Access the Admin Panel:</strong> Navigate to <code className="bg-muted px-1 py-0.5 rounded text-xs">/admin</code> route in your browser, or click the "Admin" link in the header (if you're logged in as an admin)
+                </li>
+                <li>
+                  <strong>Add a new product:</strong> Use the "Add/Edit Product" tab to create new products
+                </li>
+                <li>
+                  <strong>Fill required fields:</strong> Enter the product details:
+                  <ul className="list-disc list-inside ml-6 mt-1 space-y-1">
+                    <li>Title (product name)</li>
+                    <li>Category (e.g., Electronics, Fashion, Home & Kitchen)</li>
+                    <li>Description (detailed product information)</li>
+                    <li>Price (in your chosen currency)</li>
+                    <li>Stock (available quantity)</li>
+                    <li>Image URL (link to product image)</li>
+                  </ul>
+                </li>
+                <li>
+                  <strong>Submit the product:</strong> Click the submit button to add the product to your catalog
+                </li>
+                <li>
+                  <strong>Manage existing products:</strong> Use the "Manage Products" tab to edit product details or update stock levels
+                </li>
+              </ol>
+
+              <Alert variant="destructive">
+                <AlertDescription>
+                  <strong>Admin Access Required:</strong> Only admin accounts can access the Admin Panel and manage products. Non-admin users will see an "Access Denied" message when trying to access <code className="bg-muted px-1 py-0.5 rounded text-xs">/admin</code>.
+                </AlertDescription>
+              </Alert>
+            </div>
           </CardContent>
         </Card>
 

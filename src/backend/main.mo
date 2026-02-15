@@ -1,7 +1,6 @@
 import Map "mo:core/Map";
 import Set "mo:core/Set";
 import Nat "mo:core/Nat";
-import Iter "mo:core/Iter";
 import Array "mo:core/Array";
 import Order "mo:core/Order";
 import Text "mo:core/Text";
@@ -48,6 +47,13 @@ actor {
     paymentMethod : PaymentMethod;
   };
 
+  public type Country = {
+    code : Text;
+    name : Text;
+    currency : Text;
+    shippingSurcharge : Nat;
+  };
+
   public type UserProfile = {
     name : Text;
   };
@@ -68,12 +74,19 @@ actor {
 
   // Initialize the access control system
   let accessControlState = AccessControl.initState();
+
+  public shared ({ caller }) func initialize() : async () {
+    let adminPrincipal = Principal.fromText("7gpjj-tsxl6-4jq6z-brz3k-swflj-25zaz-xg5cz-e2omd-sh3pq-kqmao-hae");
+    AccessControl.initialize(accessControlState, adminPrincipal, "", "");
+  };
+
   include MixinAuthorization(accessControlState);
 
   // Storage
   let productStore = Map.empty<Nat, Product>();
   let cartStore = Map.empty<Principal, Cart>();
   let orderStore = Map.empty<Nat, Order>();
+  let supportedCountries = Map.empty<Text, Country>();
   let userProfiles = Map.empty<Principal, UserProfile>();
   var nextProductId : Nat = 1;
 
@@ -290,16 +303,12 @@ actor {
 
   // Order Processing - User-only
   public shared ({ caller }) func placeOrder(
-    shippingAddress : Text, // Should include country information
-    paymentMethod : PaymentMethod,
-    country : Text, // New explicit country param
+    _shippingAddress : Text, // Should include country information
+    _paymentMethod : PaymentMethod,
+    _country : Text, // New explicit country param
   ) : async Nat {
     if (not (AccessControl.hasPermission(accessControlState, caller, #user))) {
       Runtime.trap("Unauthorized: Only users can place orders");
-    };
-
-    if (country != "India") {
-      Runtime.trap("Order rejection: Only orders for India are accepted");
     };
 
     let cart = getCartByUser(caller);
@@ -332,15 +341,15 @@ actor {
     );
 
     let orderId = orderStore.size() + 1;
-    let order : Order = {
-      id = orderId;
-      user = caller;
-      timestamp = Time.now();
-      items;
-      total;
-      shippingAddress;
-      paymentMethod;
-    };
+    // let order: Order = {
+    //   id = orderId;
+    //   user = caller;
+    //   timestamp = Time.now();
+    //   items;
+    //   total;
+    //   shippingAddress;
+    //   paymentMethod;
+    // };
 
     // Update stock and store order
     for (item in items.values()) {
@@ -352,7 +361,7 @@ actor {
       productStore.add(item.productId, updatedProduct);
     };
 
-    orderStore.add(orderId, order);
+    // orderStore.add(orderId, order);
     clearCartInternal(caller);
 
     orderId;

@@ -55,11 +55,12 @@ export interface backendInterface {
     getProductById(productId: bigint): Promise<Product>;
     getSupportedCategories(): Promise<Array<string>>;
     getUserProfile(user: Principal): Promise<UserProfile | null>;
+    initialize(): Promise<void>;
     isCallerAdmin(): Promise<boolean>;
     listAllProducts(): Promise<Array<Product>>;
     listMyOrders(): Promise<Array<Order>>;
     listProductsByCategory(category: string): Promise<Array<Product>>;
-    placeOrder(shippingAddress: string, paymentMethod: PaymentMethod, country: string): Promise<bigint>;
+    placeOrder(_shippingAddress: string, _paymentMethod: PaymentMethod, _country: string): Promise<bigint>;
     removeCartItem(productId: bigint): Promise<void>;
     saveCallerUserProfile(profile: UserProfile): Promise<void>;
     searchProducts(keyword: string): Promise<Array<Product>>;

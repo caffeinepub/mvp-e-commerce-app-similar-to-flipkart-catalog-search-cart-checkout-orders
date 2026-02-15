@@ -1,16 +1,29 @@
 import { ReactNode } from 'react';
 import { useIsCallerAdmin } from '../../hooks/queries/useUser';
+import { useInternetIdentity } from '../../hooks/useInternetIdentity';
+import { useActor } from '../../hooks/useActor';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { ShieldX } from 'lucide-react';
 import { Link } from '@tanstack/react-router';
 import { Button } from '@/components/ui/button';
+import AuthGate from '../auth/AuthGate';
 
 interface AdminGateProps {
   children: ReactNode;
 }
 
 export default function AdminGate({ children }: AdminGateProps) {
-  const { data: isAdmin, isLoading } = useIsCallerAdmin();
+  const { identity } = useInternetIdentity();
+  const { actor, isFetching: actorFetching } = useActor();
+  const { data: isAdmin, isLoading: isAdminQueryLoading, isFetched } = useIsCallerAdmin();
+
+  // If not signed in, show sign-in prompt first
+  if (!identity) {
+    return <AuthGate>{children}</AuthGate>;
+  }
+
+  // Wait for actor and identity to be ready before checking admin status
+  const isLoading = actorFetching || !actor || isAdminQueryLoading || !isFetched;
 
   if (isLoading) {
     return (

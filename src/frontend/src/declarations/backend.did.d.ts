@@ -53,6 +53,7 @@ export interface _SERVICE {
   'getProductById' : ActorMethod<[bigint], Product>,
   'getSupportedCategories' : ActorMethod<[], Array<string>>,
   'getUserProfile' : ActorMethod<[Principal], [] | [UserProfile]>,
+  'initialize' : ActorMethod<[], undefined>,
   'isCallerAdmin' : ActorMethod<[], boolean>,
   'listAllProducts' : ActorMethod<[], Array<Product>>,
   'listMyOrders' : ActorMethod<[], Array<Order>>,

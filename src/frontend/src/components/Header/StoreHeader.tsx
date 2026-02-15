@@ -1,17 +1,21 @@
 import { Link, useNavigate } from '@tanstack/react-router';
-import { ShoppingCart, Package, Search } from 'lucide-react';
+import { ShoppingCart, Package, Search, ShieldCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import LoginButton from '../auth/LoginButton';
 import CartIndicator from '../cart/CartIndicator';
 import BrandLogo from '../branding/BrandLogo';
+import PrincipalIdDisclosure from '../auth/PrincipalIdDisclosure';
 import { useInternetIdentity } from '../../hooks/useInternetIdentity';
+import { useIsCallerAdmin } from '../../hooks/queries/useUser';
 import { useState } from 'react';
 
 export default function StoreHeader() {
   const navigate = useNavigate();
   const { identity } = useInternetIdentity();
   const [searchQuery, setSearchQuery] = useState('');
+  
+  const { data: isAdmin, isLoading: isAdminLoading } = useIsCallerAdmin();
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -19,6 +23,8 @@ export default function StoreHeader() {
       navigate({ to: '/products', search: { q: searchQuery.trim() } });
     }
   };
+
+  const showAdminLink = identity && !isAdminLoading && isAdmin === true;
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-card shadow-sm">
@@ -50,7 +56,16 @@ export default function StoreHeader() {
                   </Link>
                 </Button>
                 <CartIndicator />
+                <PrincipalIdDisclosure />
               </>
+            )}
+            {showAdminLink && (
+              <Button variant="ghost" size="sm" asChild>
+                <Link to="/admin">
+                  <ShieldCheck className="h-4 w-4 mr-2" />
+                  Admin
+                </Link>
+              </Button>
             )}
             <LoginButton />
           </div>

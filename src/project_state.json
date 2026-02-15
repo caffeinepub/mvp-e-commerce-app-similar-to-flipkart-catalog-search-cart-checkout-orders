@@ -1,12 +1,20 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 9,
+  "projectStateVersion": 19,
   "summary": "Build an e-commerce marketplace app similar to Flipkart, branded as Buyflow, with purchasing restricted to users in India only.",
   "architectural_notes": [
-    "Add country/region eligibility check during checkout (India-only purchasing)."
+    "Add country/region eligibility check during checkout (India-only purchasing).",
+    "Admin navigation entry should be conditionally rendered only when the authenticated principal is in the backend-configured admin principals list; ensure frontend’s admin check is aligned with backend authorization logic.",
+    "Admin access fix path: capture the signed-in user’s actual Internet Identity principal (not email) from the UI/profile and add it to the backend-configured admin principals list, then redeploy.",
+    "User provided their Internet Identity principal string (7gpjj-tsxl6-4jq6z-brz3k-swflj-25zaz-xg5cz-e2omd-sh3pq-kqmao-hae); next step is to add it to the backend-configured admin principals list and redeploy so the Admin nav/panel access aligns end-to-end.",
+    "Admin route (/admin) currently renders only the caller principal as a placeholder; build and render the full product-management admin UI (list/add/edit, images, categories, price, stock)."
   ],
-  "known_issues": [],
-  "isFixRequest": false,
+  "known_issues": [
+    "Admin user signs in but does not see the Admin button/link or access to the Admin panel (possible admin principal mismatch or UI admin-check not recognizing the user).",
+    "User reported Admin panel still not appearing; user provided an email address as \"principal id\"—may indicate confusion or inability to view/copy the actual Internet Identity principal, leading to continued admin principal mismatch.",
+    "Admin panel currently only shows the signed-in principal ID; full product-management admin UI is missing/not rendered."
+  ],
+  "isFixRequest": true,
   "existing_features": [
     {
       "id": "feature-create-an-e-commerce-mvp-that-supports-browsing-a-product-catalog-by-category-searching-products-viewing-product-details-adding-removing-items-in-a-cart-completing-a-checkout-no-external-payment-and-viewing-past-orders",
@@ -119,6 +127,78 @@
         "REQ-20"
       ],
       "version": 1
+    },
+    {
+      "id": "feature-update-the-in-app-help-page-to-include-a-new-section-titled-how-to-add-products-that-explains-in-english-how-an-admin-can-add-edit-manage-products-in-buyflow-using-the-existing-admin-panel-at-route-admin-the-section-must-clearly-state-that-only-admin-accounts-can-access-the-admin-panel-and-that-non-admin-users-will-see-an-access-denied-screen",
+      "title": "Update the in-app Help page to include a new section titled \"How to add products\" that explains, in English, how an admin can add/edit/manage products in Buyflow using the existing Admin Panel at route \"/admin\". The section must clearly state that only admin accounts can access the Admin Panel and that non-admin users will see an \"Access Denied\" screen.",
+      "reqIds": [
+        "REQ-21"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-improve-discoverability-of-the-existing-admin-panel-by-adding-an-admin-navigation-entry-that-is-only-visible-to-authenticated-admin-users-when-the-current-user-is-an-admin-show-an-admin-link-button-in-the-main-header-navigation-that-routes-to-admin-when-not-an-admin-do-not-show-the-link",
+      "title": "Improve discoverability of the existing Admin Panel by adding an Admin navigation entry that is only visible to authenticated admin users. When the current user is an admin, show an \"Admin\" link/button in the main header navigation that routes to \"/admin\"; when not an admin, do not show the link.",
+      "reqIds": [
+        "REQ-22"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-the-admin-navigation-entry-is-visible-to-authenticated-admin-users-on-all-screen-sizes-including-mobile-and-routes-to-admin-when-clicked",
+      "title": "Ensure the \"Admin\" navigation entry is visible to authenticated admin users on all screen sizes (including mobile), and routes to \"/admin\" when clicked.",
+      "reqIds": [
+        "REQ-23"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-make-admin-detection-reliable-end-to-end-so-that-admin-users-are-recognized-by-the-frontend-useiscalleradmin-and-can-access-admin-only-product-management-apis-fix-any-mismatch-between-the-configured-admin-principals-and-the-active-internet-identity-principal",
+      "title": "Make admin detection reliable end-to-end so that admin users are recognized by the frontend (useIsCallerAdmin) and can access admin-only product management APIs; fix any mismatch between the configured admin principals and the active Internet Identity principal.",
+      "reqIds": [
+        "REQ-24"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-an-authenticated-user-ui-affordance-that-clearly-displays-the-currently-signed-in-internet-identity-principal-id-the-full-principal-string-and-provides-a-one-click-copy-to-clipboard-action",
+      "title": "Add an authenticated-user UI affordance that clearly displays the currently signed-in Internet Identity principal ID (the full principal string) and provides a one-click copy-to-clipboard action.",
+      "reqIds": [
+        "REQ-25"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-in-app-help-page-to-include-an-english-section-explaining-how-to-find-and-copy-the-internet-identity-principal-id-explicitly-clarifying-that-an-email-address-is-not-a-principal-id-and-that-admin-access-requires-the-principal-string",
+      "title": "Update the in-app Help page to include an English section explaining how to find and copy the Internet Identity principal ID, explicitly clarifying that an email address is not a principal ID and that admin access requires the principal string.",
+      "reqIds": [
+        "REQ-26"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-the-admin-route-renders-a-full-admin-panel-product-management-experience-not-a-placeholder-view-that-only-shows-the-signed-in-principal-id-including-1-an-add-edit-product-form-and-2-a-manage-products-list-for-editing-and-stock-updates-access-must-remain-restricted-via-the-existing-admingate-so-non-admin-users-see-an-access-denied-screen",
+      "title": "Ensure the \"/admin\" route renders a full Admin Panel product-management experience (not a placeholder view that only shows the signed-in principal ID), including: (1) an Add/Edit Product form and (2) a Manage Products list for editing and stock updates; access must remain restricted via the existing AdminGate so non-admin users see an \"Access Denied\" screen.",
+      "reqIds": [
+        "REQ-28"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-upgrade-the-admin-panel-add-edit-product-form-to-support-a-full-workflow-for-product-fields-already-supported-by-the-backend-title-description-price-currency-category-imageurl-rating-optional-and-stock-add-admin-friendly-ux-features-inline-validation-with-clear-english-error-messages-an-image-preview-for-the-entered-imageurl-and-category-assistance-suggest-existing-categories-from-the-catalog-while-still-allowing-free-text-entry",
+      "title": "Upgrade the Admin Panel Add/Edit Product form to support a \"full\" workflow for product fields already supported by the backend: title, description, price, currency, category, imageUrl, rating (optional), and stock. Add admin-friendly UX features: inline validation with clear English error messages, an image preview for the entered imageUrl, and category assistance (suggest existing categories from the catalog while still allowing free-text entry).",
+      "reqIds": [
+        "REQ-29"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-upgrade-the-admin-panel-manage-products-view-to-better-support-ongoing-catalog-management-by-adding-loading-empty-states-an-at-a-glance-product-thumbnail-from-imageurl-and-safer-stock-editing-ux-validate-numeric-input-avoid-sending-invalid-empty-values-keep-all-user-facing-text-in-english",
+      "title": "Upgrade the Admin Panel \"Manage Products\" view to better support ongoing catalog management by adding: loading/empty states, an at-a-glance product thumbnail (from imageUrl), and safer stock editing UX (validate numeric input; avoid sending invalid/empty values). Keep all user-facing text in English.",
+      "reqIds": [
+        "REQ-30"
+      ],
+      "version": 1
     }
   ],
   "new_feature_requests": [
@@ -193,6 +273,20 @@
       "summary": "Set up a public Buyflow website URL (e.g., custom domain/short easy-to-remember URL) so users can access it in any browser without direct link sharing, and enable discoverability via Google Search indexing.",
       "reqIds": [],
       "status": "pending"
+    },
+    {
+      "id": "AR-16",
+      "summary": "Update the backend’s fixed admin-principals configuration to include the Internet Identity principal \"7gpjj-tsxl6-4jq6z-brz3k-swflj-25zaz-xg5cz-e2omd-sh3pq-kqmao-hae\", so this signed-in user is recognized as an admin and can access admin-only product management APIs and the /admin UI.",
+      "reqIds": [
+        "REQ-27"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-17",
+      "summary": "Implement a full Admin Panel UI (beyond showing principal ID) including product management tools: list/add/edit products with images, price, stock, categories, and related fields.",
+      "reqIds": [],
+      "status": "in_progress"
     }
   ],
   "projectName": "Buyflow",
