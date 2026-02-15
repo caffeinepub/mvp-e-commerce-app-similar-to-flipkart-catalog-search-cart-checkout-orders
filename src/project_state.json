@@ -1,0 +1,201 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 9,
+  "summary": "Build an e-commerce marketplace app similar to Flipkart, branded as Buyflow, with purchasing restricted to users in India only.",
+  "architectural_notes": [
+    "Add country/region eligibility check during checkout (India-only purchasing)."
+  ],
+  "known_issues": [],
+  "isFixRequest": false,
+  "existing_features": [
+    {
+      "id": "feature-create-an-e-commerce-mvp-that-supports-browsing-a-product-catalog-by-category-searching-products-viewing-product-details-adding-removing-items-in-a-cart-completing-a-checkout-no-external-payment-and-viewing-past-orders",
+      "title": "Create an e-commerce MVP that supports: browsing a product catalog by category, searching products, viewing product details, adding/removing items in a cart, completing a checkout (no external payment), and viewing past orders.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-internet-identity-authentication-and-require-sign-in-to-checkout-and-to-view-orders-allow-browsing-searching-products-without-signing-in",
+      "title": "Implement Internet Identity authentication and require sign-in to checkout and to view Orders; allow browsing/searching products without signing in.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-frontend-build-core-pages-components-home-categories-featured-products-product-listing-category-search-results-product-detail-images-price-description-add-to-cart-cart-edit-quantities-remove-checkout-shipping-address-form-order-summary-place-order-orders-list-details-use-react-query-for-all-backend-data-access",
+      "title": "Frontend: Build core pages/components: Home (categories + featured products), Product Listing (category + search results), Product Detail (images, price, description, add to cart), Cart (edit quantities/remove), Checkout (shipping address form + order summary + place order), Orders (list + details). Use React Query for all backend data access.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-an-admin-only-product-management-flow-restricted-to-a-fixed-list-of-admin-principals-configured-in-backend-code-add-product-update-product-and-update-stock-ui-can-be-a-simple-hidden-route-or-a-basic-admin-page",
+      "title": "Create an Admin-only product management flow restricted to a fixed list of admin principals (configured in backend code): add product, update product, and update stock. UI can be a simple hidden route or a basic admin page.",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-apply-a-coherent-original-visual-theme-for-a-flipkart-like-marketplace-ui-not-using-a-blue-purple-palette-define-consistent-colors-typography-spacing-and-component-styling-across-all-pages-using-tailwind-and-existing-ui-components",
+      "title": "Apply a coherent, original visual theme for a Flipkart-like marketplace UI (not using a blue+purple palette): define consistent colors, typography, spacing, and component styling across all pages using Tailwind and existing UI components.",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-generated-images-to-the-frontend-as-static-assets-under-frontend-public-assets-generated-and-use-them-in-the-ui-for-branding-and-categories-products",
+      "title": "Add generated images to the frontend as static assets under frontend/public/assets/generated and use them in the UI for branding and categories/products.",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-frontend-update-the-checkout-page-to-allow-the-user-to-select-a-payment-method-with-cash-on-delivery-cod-available-and-require-a-selection-before-placing-the-order",
+      "title": "Frontend: Update the Checkout page to allow the user to select a payment method, with Cash on Delivery (COD) available, and require a selection before placing the order.",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-frontend-display-the-selected-payment-method-on-order-related-screens-so-users-can-see-how-they-will-pay-orders-list-card-order-details-and-order-confirmation",
+      "title": "Frontend: Display the selected payment method on order-related screens so users can see how they will pay (Orders list card, Order details, and Order confirmation).",
+      "reqIds": [
+        "REQ-13"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-rebrand-the-storefront-name-to-buyflow-across-all-visible-branding-and-browser-metadata-replacing-the-current-shophub-name-wherever-it-appears-e-g-header-brand-text-logo-alt-text-footer-copyright-and-the-html-document-title",
+      "title": "Rebrand the storefront name to “Buyflow” across all visible branding and browser metadata, replacing the current “ShopHub” name wherever it appears (e.g., header brand text, logo alt text, footer copyright, and the HTML document title).",
+      "reqIds": [
+        "REQ-14"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-checkout-shipping-address-collection-to-explicitly-include-a-country-field-and-block-checkout-unless-the-country-is-india-show-a-clear-user-facing-error-message-when-the-user-attempts-to-place-an-order-with-a-non-india-country",
+      "title": "Update the checkout shipping address collection to explicitly include a Country field and block checkout unless the Country is “India”. Show a clear, user-facing error message when the user attempts to place an order with a non-India country.",
+      "reqIds": [
+        "REQ-15"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-static-seo-discoverability-files-for-buyflow-so-search-engines-can-crawl-the-site-when-it-is-hosted-at-a-public-url-e-g-icp-domain-or-custom-domain-include-a-robots-txt-that-allows-crawling-and-a-sitemap-xml-that-lists-the-main-routes-products",
+      "title": "Add static SEO/discoverability files for Buyflow so search engines can crawl the site when it is hosted at a public URL (e.g., ICP domain or custom domain): include a robots.txt that allows crawling, and a sitemap.xml that lists the main routes (/, /products).",
+      "reqIds": [
+        "REQ-17"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-improve-html-metadata-for-sharing-and-indexing-by-adding-standard-meta-tags-to-the-html-entry-point-meta-description-canonical-url-support-and-open-graph-basic-tags-title-description-url-using-the-buyflow-brand-name-and-english-text",
+      "title": "Improve HTML metadata for sharing and indexing by adding standard meta tags to the HTML entry point: meta description, canonical URL support, and Open Graph basic tags (title, description, url) using the Buyflow brand name and English text.",
+      "reqIds": [
+        "REQ-18"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-simple-user-facing-page-or-section-in-the-ui-that-shows-the-app-s-current-public-url-origin-and-provides-a-one-click-copy-url-action-so-users-can-open-buyflow-directly-in-any-browser-chrome-safari-firefox-without-needing-someone-to-send-them-a-link-manually",
+      "title": "Add a simple user-facing page or section in the UI that shows the app’s current public URL (origin) and provides a one-click “Copy URL” action so users can open Buyflow directly in any browser (Chrome/Safari/Firefox) without needing someone to send them a link manually.",
+      "reqIds": [
+        "REQ-19"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-an-in-app-help-section-english-that-explains-what-is-required-to-make-buyflow-discoverable-on-google-search-e-g-submit-the-public-url-in-google-search-console-and-clarify-that-a-custom-domain-dns-setup-is-outside-the-app-code-but-the-app-provides-the-needed-seo-files-and-metadata",
+      "title": "Add an in-app help section (English) that explains what is required to make Buyflow discoverable on Google Search (e.g., submit the public URL in Google Search Console) and clarify that a custom domain/DNS setup is outside the app code but the app provides the needed SEO files and metadata.",
+      "reqIds": [
+        "REQ-20"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Create an e-commerce app similar to Flipkart (product catalog, search/browse, cart, checkout, orders, user accounts).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Backend: Add stable data models and CRUD/query methods for Products (id, title, description, price, currency, category, imageUrl, rating optional, stock), and expose query endpoints for: list all, list by category, search by keyword, and get by id.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Backend: Implement per-user Cart functionality keyed by caller principal, including methods to get cart, add item (productId, quantity), update quantity, remove item, and clear cart; validate product existence and enforce stock limits.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Backend: Implement Orders with method placeOrder(shippingAddress fields, cart snapshot) that converts the caller’s cart into an order, decreases stock, clears the cart, and returns an order id; provide listMyOrders() and getOrder(orderId) restricted to the order owner.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-8",
+      "summary": "Seed the app with an initial catalog of sample products across multiple categories (e.g., Electronics, Fashion, Home, Beauty) so the UI is usable immediately after deployment.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-9",
+      "summary": "Add a payment method option to checkout: Cash on Delivery (COD), allowing users to place orders with COD selected and reflecting it on order records/details.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-10",
+      "summary": "Backend: Add a payment method field to the Order record and persist it when placing an order, supporting at least the Cash on Delivery (COD) option.",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-11",
+      "summary": "Restrict purchasing/checkout to Indian users only; block users from other countries from buying products.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-14",
+      "summary": "Enforce India-only purchasing on the backend by validating order placement requests and rejecting any order that is not for India. The backend must not rely solely on frontend checks for this restriction.",
+      "reqIds": [
+        "REQ-16"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-15",
+      "summary": "Set up a public Buyflow website URL (e.g., custom domain/short easy-to-remember URL) so users can access it in any browser without direct link sharing, and enable discoverability via Google Search indexing.",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "projectName": "Buyflow",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

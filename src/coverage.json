@@ -1,0 +1,84 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-15T09:23:18.212Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 4,
+    "implemented": 4,
+    "items": [
+      {
+        "id": "REQ-17",
+        "summary": "Add static SEO/discoverability files for Buyflow so search engines can crawl the site when it is hosted at a public URL (e.g., ICP domain or custom domain): include a robots.txt that allows crawling, and a sitemap.xml that lists the main routes (/, /products).",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/public/robots.txt",
+          "frontend/public/sitemap.xml"
+        ],
+        "matchedFiles": [
+          "frontend/public/robots.txt",
+          "frontend/public/sitemap.xml"
+        ]
+      },
+      {
+        "id": "REQ-18",
+        "summary": "Improve HTML metadata for sharing and indexing by adding standard meta tags to the HTML entry point: meta description, canonical URL support, and Open Graph basic tags (title, description, url) using the Buyflow brand name and English text.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/index.html"
+        ],
+        "matchedFiles": [
+          "frontend/index.html"
+        ]
+      },
+      {
+        "id": "REQ-19",
+        "summary": "Add a simple user-facing page or section in the UI that shows the app’s current public URL (origin) and provides a one-click “Copy URL” action so users can open Buyflow directly in any browser (Chrome/Safari/Firefox) without needing someone to send them a link manually.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/pages/HelpPage.tsx",
+          "frontend/src/utils/publicUrl.ts",
+          "frontend/src/App.tsx",
+          "frontend/src/components/Layout/AppLayout.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/HelpPage.tsx",
+          "frontend/src/utils/publicUrl.ts",
+          "frontend/src/App.tsx",
+          "frontend/src/components/Layout/AppLayout.tsx"
+        ]
+      },
+      {
+        "id": "REQ-20",
+        "summary": "Add an in-app help section (English) that explains what is required to make Buyflow discoverable on Google Search (e.g., submit the public URL in Google Search Console) and clarify that a custom domain/DNS setup is outside the app code but the app provides the needed SEO files and metadata.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/pages/HelpPage.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/HelpPage.tsx"
+        ]
+      }
+    ]
+  },
+  "changedFiles": [
+    "build-request.json",
+    "feature_evidence.json",
+    "frontend-file-summaries.txt",
+    "frontend-implementation-plan.json",
+    "frontend/index.html",
+    "frontend/public/robots.txt",
+    "frontend/public/sitemap.xml",
+    "frontend/src/App.tsx",
+    "frontend/src/components/Layout/AppLayout.tsx",
+    "frontend/src/pages/HelpPage.tsx",
+    "frontend/src/utils/publicUrl.ts",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}

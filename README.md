@@ -1,2 +1,3 @@
-# mvp-e-commerce-app-similar-to-flipkart-catalog-search-cart-checkout-orders
-Exported from Caffeine project: Buyflow
+## 
+
+To run app build and run docker image: `docker build -t app . docker run -it --network host app`

@@ -1,0 +1,27 @@
+<html lang='en'>
+    <head>
+        <meta charset='UTF-8' />
+        <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+        <title>Buyflow - Your Trusted Online Marketplace</title>
+        <meta name='description' content='Buyflow is your trusted online marketplace for quality products. Shop electronics, fashion, home goods, and more with secure payment and fast delivery across India.' />
+        <link rel='canonical' id='canonical-url' href='/' />
+        <meta property='og:title' content='Buyflow - Your Trusted Online Marketplace' />
+        <meta property='og:description' content='Buyflow is your trusted online marketplace for quality products. Shop electronics, fashion, home goods, and more with secure payment and fast delivery across India.' />
+        <meta property='og:url' id='og-url' content='/' />
+        <meta property='og:type' content='website' />
+        <script>
+            // Set canonical and og:url dynamically based on current origin
+            (function() {
+                const origin = window.location.origin;
+                const canonicalEl = document.getElementById('canonical-url');
+                const ogUrlEl = document.getElementById('og-url');
+                if (canonicalEl) canonicalEl.setAttribute('href', origin + '/');
+                if (ogUrlEl) ogUrlEl.setAttribute('content', origin + '/');
+            })();
+        </script>
+    </head>
+    <body>
+        <div id='root'></div>
+        <script type='module' src='/src/main.tsx'></script>
+    </body>
+</html>
